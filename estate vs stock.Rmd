@@ -1,0 +1,250 @@
+---
+title: "Introduction to Big Data：Midterm Report"
+author: "資工三 410711225 連昱婷"
+date: "2021/5/30"
+output: html_document
+---
+see more
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 分析及預測美國及台灣從2000年至今的股市及房地產表現
+
+## (一) 台灣從2000年至今的房地產表現
+
+### 1. 全國縣市統計買賣契約價格平均單價(不分進物類別)  
+
+```{r echo=TRUE, warning=FALSE}
+data1 <- read.csv("C:/Users/User/Desktop/estate/買賣契約價格平均單價(不分建物類別).csv")
+print(data1)
+```
+
+```{r echo=TRUE, warning=FALSE}
+data1 <- read.csv("C:/Users/User/Desktop/estate/買賣契約價格平均單價(不分建物類別).csv")
+x <- seq(1:85)
+plot(x, data1$買賣契約價格平均單價.不分建物類別., 
+     xlab = "Time",
+     ylab = "Average price",
+     main = "全國買賣契約價格平均單價(不分建物類別)走勢",type='l', col='blue')
+```
+
+### 2. 各縣市統計
+
+```{r echo=TRUE, warning=FALSE}
+
+par(mfrow = c(2,2)) 
+
+data2 <- read.csv("C:/Users/User/Desktop/estate/統計資訊整合查詢結果 (台北市).csv")
+x <- seq(1:85)
+plot(x, data2$買賣契約價格平均單價.不分建物類別., 
+     xlab = "Time",
+     ylab = "Average price",
+     main = "台北市",type='l', col='blue')
+
+data3 <- read.csv("C:/Users/User/Desktop/estate/統計資訊整合查詢結果 (台中市).csv")
+x <- seq(1:85)
+plot(x, data3$買賣契約價格平均單價.不分建物類別., 
+     xlab = "Time",
+     ylab = "Average price",
+     main = "台中市",type='l', col='blue')
+ 
+
+data4 <- read.csv("C:/Users/User/Desktop/estate/統計資訊整合查詢結果 (高雄市).csv")
+x <- seq(1:85)
+plot(x, data4$買賣契約價格平均單價.不分建物類別., 
+     xlab = "Time",
+     ylab = "Average price",
+     main = "高雄市",type='l', col='blue')
+
+data5 <- read.csv("C:/Users/User/Desktop/estate/統計資訊整合查詢結果 (花蓮縣).csv")
+x <- seq(1:85)
+plot(x, data5$買賣契約價格平均單價.不分建物類別., 
+     xlab = "Time",
+     ylab = "Average price",
+     main = "花蓮縣",type='l', col='blue')
+
+```
+
+```{r echo=TRUE, warning=FALSE}
+
+data1 <- read.csv("C:/Users/User/Desktop/estate/買賣契約價格平均單價(不分建物類別).csv")
+x <- seq(1:85)
+plot(x, data1$買賣契約價格平均單價.不分建物類別., 
+     xlab = "Time",
+     ylab = "Average price",
+     main = "各縣市房地產整體走勢",type='l', col='red', ylim=c(0,80))
+
+data2 <- read.csv("C:/Users/User/Desktop/estate/統計資訊整合查詢結果 (台北市).csv")
+lines(x, data2$買賣契約價格平均單價.不分建物類別., col='black')
+
+data3 <- read.csv("C:/Users/User/Desktop/estate/統計資訊整合查詢結果 (台中市).csv")
+lines(x, data3$買賣契約價格平均單價.不分建物類別., col='gray')
+
+data4 <- read.csv("C:/Users/User/Desktop/estate/統計資訊整合查詢結果 (高雄市).csv")
+lines(x, data4$買賣契約價格平均單價.不分建物類別., col='blue')
+
+data5 <- read.csv("C:/Users/User/Desktop/estate/統計資訊整合查詢結果 (花蓮縣).csv")
+lines(x, data5$買賣契約價格平均單價.不分建物類別., col='green')
+
+
+
+```
+
+## (二) 台灣從2000年至今的股市表現
+
+```{r echo=TRUE, warning=FALSE}
+
+par(mfrow = c(2,2)) 
+
+data <- read.csv("C:/Users/User/Desktop/estate/^TWII (Monthly).csv")
+
+plot(data$High,
+     xlab = "Date",
+     ylab = "Historical Prices",
+     main = "High最高價",type='l', col='red')
+
+plot(data$Low,
+     xlab = "Date",
+     ylab = "Historical Prices",
+     main = "Low最低價",type='l', col='blue')
+
+plot(data$Open,
+     xlab = "Date",
+     ylab = "Historical Prices",
+     main = "Open開盤價",type='l', col='black')
+
+plot(data$Close,
+     xlab = "Date",
+     ylab = "Historical Prices",
+     main = "Close收盤價",type='l', col='green')
+
+```
+
+```{r echo=TRUE, warning=FALSE}
+
+data <- read.csv("C:/Users/User/Desktop/estate/^TWII (Monthly).csv")
+
+plot(data$High,
+     xlab = "Date",
+     ylab = "Historical Prices",
+     main = "台灣股市整體走勢",type='l', col='red')
+
+lines(data$Low, col='blue')
+lines(data$Open, col='black')
+lines(data$Close, col='green')
+
+```
+
+## (三) 台灣股市與房地產表現
+```{r echo=TRUE, warning=FALSE}
+par(mfrow = c(1,2)) 
+
+data <- read.csv("C:/Users/User/Desktop/estate/^TWII (Monthly).csv")
+
+plot(data$High,
+     xlab = "Date",
+     ylab = "Historical Prices",
+     main = "台灣股市整體走勢",type='l', col='red')
+
+lines(data$Low, col='blue')
+lines(data$Open, col='black')
+lines(data$Close, col='green')
+
+data1 <- read.csv("C:/Users/User/Desktop/estate/買賣契約價格平均單價(不分建物類別).csv")
+x <- seq(1:85)
+plot(x, data1$買賣契約價格平均單價.不分建物類別., 
+     xlab = "Date",
+     ylab = "Average price",
+     main = "台灣房地產",type='l', col='blue')
+```
+
+## (四) 美國從2000年至今的房地產表現
+
+```{r echo=TRUE, warning=FALSE}
+
+amer <- read.csv("C:/Users/User/Desktop/estate/American Real Estate.csv")
+
+plot(amer$Price.Index,
+     xlab = "Date",
+     ylab = "Estate price index",
+     main = "美國房價指數",type='l', col='green')
+```
+
+## (五) 美國從2000年至今的股市表現
+
+```{r echo=TRUE, warning=FALSE}
+par(mfrow = c(2,2)) 
+
+amer <- read.csv("C:/Users/User/Desktop/estate/DowJones.csv")
+
+plot(amer$High,
+     xlab = "Date",
+     ylab = "Historical Prices",
+     main = "High最高價",type='l', col='red')
+
+plot(amer$Low,
+     xlab = "Date",
+     ylab = "Historical Prices",
+     main = "Low最低價",type='l', col='blue')
+
+plot(amer$Open,
+     xlab = "Date",
+     ylab = "Historical Prices",
+     main = "Open開盤價",type='l', col='black')
+
+plot(amer$Price,
+     xlab = "Date",
+     ylab = "Historical Prices",
+     main = "Price股價",type='l', col='green')
+```
+
+```{r echo=TRUE, warning=FALSE}
+amer <- read.csv("C:/Users/User/Desktop/estate/DowJones.csv")
+
+plot(amer$High,
+     xlab = "Date",
+     ylab = "Historical Prices",
+     main = "美國股市整體走勢",type='l', col='red')
+
+lines(amer$Low, col='blue')
+lines(amer$Open, col='black')
+lines(amer$Price, col='green')
+```
+
+## (六) 美國股市與房地產表現
+
+```{r echo=TRUE, warning=FALSE}
+par(mfrow = c(1,2)) 
+
+amer <- read.csv("C:/Users/User/Desktop/estate/DowJones.csv")
+
+plot(amer$High,
+     xlab = "Date",
+     ylab = "Historical Prices",
+     main = "美國股市整體走勢",type='l', col='red')
+
+lines(amer$Low, col='blue')
+lines(amer$Open, col='black')
+lines(amer$Price, col='green')
+
+
+
+amer <- read.csv("C:/Users/User/Desktop/estate/American Real Estate.csv")
+
+plot(amer$Price.Index,
+     xlab = "Date",
+     ylab = "Estate price index",
+     main = "美國房價指數",type='l', col='green')
+
+```
+
+### 資料收集及參考網站
+內政部不動產資訊整合平台<https://pip.moi.gov.tw/V3/E/SCRE0301.aspx>  
+Yahoo股市網站<https://finance.yahoo.com/quote/%5ETWII/>  
+Zillow數據平台<https://www.zillow.com/research/data/>  
+美國財經平台<https://www.investing.com/indices/us-30-historical-data>  
+StockFeel股感財經平台<https://www.stockfeel.com.tw/>  
+
+©IrisLien
